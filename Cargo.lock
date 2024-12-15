@@ -20,7 +20,7 @@ checksum = "512761e0bb2578dd7380c6baaa0f4ce03e84f95e960231d1dec8bf4d7d6e2627"
 [[package]]
 name = "advent_of_code"
 version = "0.1.0"
-source = "git+https://github.com/edj2010/advent_of_code.git#884d51f904c2a3a1c71039805e2974e9a0010199"
+source = "git+https://github.com/edj2010/advent_of_code.git#60597c991d9e425978a54bc28f079286a7bd826c"
 dependencies = [
  "num",
  "openssl",
