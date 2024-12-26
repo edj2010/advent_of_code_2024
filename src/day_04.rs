@@ -4,13 +4,8 @@ use advent_of_code::{
 };
 
 fn parse(input: &str) -> Grid<char> {
-    parsers::many_chars(|c| c.is_alphabetic())
-        .many_lines("\n")
-        .map(|i| {
-            let rows: Vec<String> = i.collect();
-            Grid::of_list_of_lists(rows.iter().map(|s| s.chars()), rows.len(), rows[0].len())
-                .unwrap()
-        })
+    parsers::chars(|c| c.is_alphabetic())
+        .grid("", "\n")
         .parse(input)
         .finish()
         .expect("Failed to parse input")
@@ -43,10 +38,10 @@ pub fn part2(input: &str) -> usize {
         .filter(|point| {
             let myself = grid.get(*point).ok().unwrap();
             let corners: String = [
-                *point + NORTHWEST,
-                *point + NORTHEAST,
-                *point + SOUTHEAST,
-                *point + SOUTHWEST,
+                point.add_checked(NORTHWEST, &grid.dimensions()),
+                point.add_checked(NORTHEAST, &grid.dimensions()),
+                point.add_checked(SOUTHEAST, &grid.dimensions()),
+                point.add_checked(SOUTHWEST, &grid.dimensions()),
             ]
             .into_iter()
             .filter_map(|p| p.and_then(|p| grid.get(p).ok()))

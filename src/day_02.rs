@@ -104,7 +104,7 @@ mod tests {
                 crate::INPUT_CACHE,
                 DAY
             )),
-            0
+            413
         );
     }
 

@@ -1,5 +1,5 @@
 use advent_of_code::{
-    grid::{Grid, GridDimensions, GridPoint, GridPointDelta},
+    grid::{GridDimensions, GridPoint, GridPointDelta},
     itertools::Itertools,
     parse::{parsers, Parser},
 };
@@ -14,11 +14,8 @@ fn parse(
 ) {
     parsers::tag_replace(".", None)
         .or(parsers::chars(|c| c.is_alphanumeric()).map(|c: char| Some(c)))
-        .many()
-        .map(|i| i.collect::<Vec<Option<char>>>())
-        .many_lines("\n")
-        .map(|i| {
-            let grid = Grid::of_vec_of_vecs(i.collect::<Vec<Vec<Option<char>>>>()).unwrap();
+        .grid("", "\n")
+        .map(|grid| {
             (
                 grid.dimensions(),
                 grid.iter_points().fold(
